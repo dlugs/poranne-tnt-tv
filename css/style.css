@@ -1,0 +1,156 @@
+/* Poranne TNT - 1920x1080, old-WebKit-safe (Tizen 3.0): no CSS vars, no grid. */
+html, body { margin: 0; padding: 0; width: 1920px; height: 1080px; overflow: hidden;
+             background: #120f22; color: #fff; font-family: "SamsungOne", "Helvetica Neue", Arial, sans-serif; }
+#stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+canvas { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+
+.hello { position: absolute; left: 90px; top: 60px; font-size: 64px; font-weight: bold; }
+.date  { position: absolute; left: 92px; top: 148px; font-size: 34px; color: #b9b3d6; }
+
+/* Week strip, top right */
+.week { position: absolute; right: 80px; top: 56px; text-align: right; }
+.week .days { display: flex; }
+.week .day { width: 96px; margin-left: 14px; text-align: center; font-size: 26px; color: #b9b3d6; }
+.week .dot { width: 76px; height: 76px; margin: 8px auto 0; border-radius: 50%; border: 3px solid #4a4370;
+             line-height: 76px; font-size: 50px; color: #4a4370; box-sizing: border-box; line-height: 70px; }
+.week .today .dot { border-color: #fff; }
+.week .today { color: #fff; font-weight: bold; }
+.week .ok .dot { background: #f7c331; border-color: #f7c331; color: #7a4b00; }
+.week .boom .dot { background: #2b2633; border-color: #e24a2e; color: #e24a2e; font-size: 40px; }
+.week .streak { margin-top: 14px; font-size: 28px; color: #f7c331; min-height: 34px; }
+
+/* Countdown block, left */
+.big { position: absolute; left: 90px; top: 300px; width: 760px; }
+.big .lbl  { font-size: 46px; color: #d8d3ef; }
+.big .left { font-size: 230px; font-weight: bold; line-height: 1; margin: 10px 0 6px -8px; letter-spacing: -4px;
+             -webkit-transition: color 0.5s; transition: color 0.5s; }
+.big .sub  { font-size: 40px; color: #b9b3d6; }
+.big.warn .left { color: #ffd24a; }
+.big.hot .left  { color: #ff5a3c; }
+.big.good .left { color: #7be07b; }
+.big.bad .left  { color: #ff5a3c; }
+
+/* Morning tasks */
+.tasks { position: absolute; left: 90px; top: 760px; display: flex; }
+.task { width: 116px; height: 150px; margin-right: 13px; border-radius: 22px; background: #2a2448;
+        border: 4px solid transparent; position: relative; text-align: center; box-sizing: border-box;
+        -webkit-transition: -webkit-transform 0.15s, background 0.2s; transition: transform 0.15s, background 0.2s; }
+.task svg { width: 80px; height: 80px; margin-top: 14px; }
+.task .tl { font-size: 22px; color: #d8d3ef; margin-top: 2px; }
+.task.extra { background: #4a3a1c; }   /* Friday-only task stands out */
+.task.done { background: #2f7d3a; }
+.task.done .tl { color: #fff; }
+.task .chk { position: absolute; right: -12px; top: -12px; width: 44px; height: 44px; border-radius: 50%;
+             background: #7be07b; color: #13401a; font-size: 32px; line-height: 44px; font-weight: bold; display: none; }
+.task.done .chk { display: block; }
+.sel { border-color: #fff !important; -webkit-transform: scale(1.08); transform: scale(1.08); }
+
+.go { position: absolute; left: 90px; top: 950px; width: 742px; height: 88px; line-height: 88px; border-radius: 44px;
+      background: #2f9e44; font-size: 44px; font-weight: bold; text-align: center; border: 4px solid transparent;
+      box-sizing: border-box; -webkit-transition: -webkit-transform 0.15s, background 0.2s; transition: transform 0.15s, background 0.2s; }
+
+.hidden { display: none !important; }
+
+/* Explosion lettering */
+.bum { position: absolute; left: 0; width: 1920px; top: 300px; text-align: center; font-size: 360px; font-weight: 900;
+       color: #ffd400; -webkit-text-stroke: 14px #b3120b; letter-spacing: 10px; opacity: 0;
+       -webkit-transform: scale(0.2) rotate(-8deg); transform: scale(0.2) rotate(-8deg); }
+.bum.on { opacity: 1; -webkit-transform: scale(1) rotate(-8deg); transform: scale(1) rotate(-8deg);
+          -webkit-transition: -webkit-transform 0.35s cubic-bezier(.2,1.6,.4,1), opacity 0.1s;
+          transition: transform 0.35s cubic-bezier(.2,1.6,.4,1), opacity 0.1s; }
+.bum.fade { opacity: 0; -webkit-transition: opacity 1.5s; transition: opacity 1.5s; }
+
+.foot { position: absolute; right: 80px; bottom: 34px; font-size: 24px; color: #6f689a; }
+.foot i { font-style: normal; color: #b9b3d6; border: 2px solid #4a4370; border-radius: 8px; padding: 0 8px; margin: 0 6px 0 18px; }
+
+/* Settings overlay */
+.settings { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: rgba(10, 8, 20, 0.82); display: none; }
+.settings.on { display: block; }
+.s-box { width: 1000px; margin: 140px auto 0; background: #231e3d; border-radius: 28px; padding: 40px 56px; }
+.s-title { font-size: 52px; font-weight: bold; margin-bottom: 24px; }
+.s-row { display: flex; height: 82px; line-height: 82px; font-size: 36px; padding: 0 24px; border-radius: 16px; border: 3px solid transparent; }
+.s-row .k { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; color: #d8d3ef; }
+.s-row .v { font-weight: bold; }
+.s-row.sel { border-color: #fff; background: #332b5a; -webkit-transform: none; transform: none; }
+.s-row.sel .v:before { content: "◄  "; color: #8c84bd; }
+.s-row.sel .v:after { content: "  ►"; color: #8c84bd; }
+.s-row .note { font-size: 24px; color: #8c84bd; margin-left: 16px; }
+.s-hint { margin-top: 26px; font-size: 26px; color: #8c84bd; }
+#nameInput { position: absolute; left: -2000px; top: 0; font-size: 36px; }
+
+.toast { position: absolute; left: 50%; top: 220px; -webkit-transform: translateX(-50%); transform: translateX(-50%);
+         background: rgba(0, 0, 0, 0.8); padding: 18px 36px; border-radius: 16px; font-size: 32px; opacity: 0;
+         -webkit-transition: opacity 0.3s; transition: opacity 0.3s; white-space: nowrap; }
+.toast.on { opacity: 1; }
+
+/* 8 tiles (Friday toy + daily challenge) still have to end left of the dynamite */
+.tasks.many .task { width: 106px; margin-right: 10px; }
+.tasks.many .task .tl { font-size: 19px; }
+.task .tl { line-height: 22px; padding: 0 4px; }
+.task.long svg { width: 64px; height: 64px; margin-top: 8px; }
+
+/* Weather, between the greeting and the week */
+.wx { position: absolute; left: 760px; top: 46px; width: 320px; height: 150px; }
+.wx-ico { position: absolute; left: 0; top: 0; width: 120px; height: 120px; }
+.wx-ico svg { width: 120px; height: 120px; }
+.wx-t { position: absolute; left: 130px; top: 6px; font-size: 76px; font-weight: bold; line-height: 1; }
+.wx-d { position: absolute; left: 132px; top: 90px; width: 200px; font-size: 24px; color: #b9b3d6; line-height: 28px; }
+
+/* Firefighter cat, its bucket and speech bubble (right of the dynamite) */
+.cat { position: absolute; left: 1580px; top: 720px; width: 220px; height: 280px;
+       -webkit-animation: catBob 2.4s ease-in-out infinite; animation: catBob 2.4s ease-in-out infinite; }
+.cat .eyesShut, .cat .soot { display: none; }
+.cat.sleep .eyesShut, .cat.sooty .soot { display: inline; }
+.cat.sleep .eyesOpen { display: none; }
+.cat.sleep { -webkit-animation: catBob 4s ease-in-out infinite; animation: catBob 4s ease-in-out infinite; }
+.cat.worry { -webkit-animation: catShake 0.18s linear infinite; animation: catShake 0.18s linear infinite; }
+.cat.happy { -webkit-animation: catJump 0.8s ease-out infinite; animation: catJump 0.8s ease-out infinite; }
+.cat.cheer { -webkit-animation: catJump 0.7s ease-out 1; animation: catJump 0.7s ease-out 1; }
+.cat.sooty { -webkit-animation: catDizzy 2.6s ease-in-out infinite; animation: catDizzy 2.6s ease-in-out infinite; }
+@-webkit-keyframes catBob { 0%, 100% { -webkit-transform: translateY(0); } 50% { -webkit-transform: translateY(-7px); } }
+@keyframes catBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@-webkit-keyframes catShake { 0%, 100% { -webkit-transform: translateX(0); } 25% { -webkit-transform: translateX(-4px); } 75% { -webkit-transform: translateX(4px); } }
+@keyframes catShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+@-webkit-keyframes catJump { 0%, 100% { -webkit-transform: translateY(0); } 35% { -webkit-transform: translateY(-80px) rotate(-4deg); } 65% { -webkit-transform: translateY(-10px); } 80% { -webkit-transform: translateY(-24px); } }
+@keyframes catJump { 0%, 100% { transform: translateY(0); } 35% { transform: translateY(-80px) rotate(-4deg); } 65% { transform: translateY(-10px); } 80% { transform: translateY(-24px); } }
+@-webkit-keyframes catDizzy { 0%, 100% { -webkit-transform: rotate(-4deg); } 50% { -webkit-transform: rotate(4deg); } }
+@keyframes catDizzy { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+
+.bucket { position: absolute; left: 1795px; top: 870px; width: 110px; height: 130px; }
+.bucket.full { -webkit-animation: glow 1s ease-in-out infinite alternate; animation: glow 1s ease-in-out infinite alternate; }
+@-webkit-keyframes glow { from { -webkit-transform: scale(1); } to { -webkit-transform: scale(1.08); } }
+@keyframes glow { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+.bubble { position: absolute; left: 1470px; top: 520px; width: 400px; height: 170px; display: -webkit-box; display: -webkit-flex; display: flex;
+          -webkit-box-align: center; -webkit-align-items: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center;
+          background: #fff; color: #2a2448; border-radius: 34px; font-size: 32px; font-weight: bold; line-height: 40px; text-align: center;
+          padding: 0 26px; box-sizing: border-box; box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+          -webkit-transition: opacity 0.3s; transition: opacity 0.3s; }
+.bubble:after { content: ""; position: absolute; left: 230px; bottom: -30px; border-width: 32px 20px 0 20px; border-style: solid;
+                border-color: #fff transparent transparent transparent; }
+.bubble.pop { -webkit-animation: pop 0.35s ease-out; animation: pop 0.35s ease-out; }
+@-webkit-keyframes pop { 0% { -webkit-transform: scale(0.8); } 70% { -webkit-transform: scale(1.05); } 100% { -webkit-transform: scale(1); } }
+@keyframes pop { 0% { transform: scale(0.8); } 70% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+.week .ok.full .dot { box-shadow: 0 0 22px #ffd24a; }
+
+/* Challenge of the day: yellow bubble above the star tile */
+.chal { position: absolute; top: 600px; width: 400px; min-height: 120px; padding: 14px 24px; box-sizing: border-box;
+        background: #ffe27a; color: #3a2a00; border-radius: 26px; font-size: 30px; font-weight: bold; line-height: 36px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+.chal b { display: block; font-size: 22px; line-height: 28px; color: #8a6400; text-transform: uppercase; letter-spacing: 1px; }
+.chal:after { content: ""; position: absolute; right: 38px; bottom: -26px; border-width: 28px 18px 0 18px; border-style: solid;
+              border-color: #ffe27a transparent transparent transparent; }
+.chal.done { background: #7be07b; color: #13401a; }
+.chal.done b { color: #1f6b2a; }
+.chal.done:after { border-top-color: #7be07b; }
+
+/* Cat's wardrobe and actions: classes d-<task> (dressed) and act-<task> (doing it now) */
+.cat .coat, .cat .boots, .cat .helmet, .cat .teddy, .cat .grin, .cat .scarf, .cat .act { display: none; }
+.cat.d-ubranie .coat, .cat.d-buty .boots, .cat.d-kurtka .helmet, .cat.d-zabawka .teddy, .cat.d-zeby .grin, .cat.d-scarf .scarf { display: inline; }
+.cat.d-ubranie .pj, .cat.d-buty .paws, .cat.d-kurtka .nightcap { display: none; }
+.cat.act-siku .a-siku, .cat.act-sniadanie .a-sniadanie, .cat.act-zeby .a-zeby, .cat.act-puff .a-puff { display: inline; }
+.cat.act-zeby .grin { display: none; }
+.cat.act-wyzwanie { -webkit-animation: catSpin 0.9s ease-in-out 3; animation: catSpin 0.9s ease-in-out 3; }
+@-webkit-keyframes catSpin { 0% { -webkit-transform: translateY(0) rotate(0); } 50% { -webkit-transform: translateY(-90px) rotate(180deg); } 100% { -webkit-transform: translateY(0) rotate(360deg); } }
+@keyframes catSpin { 0% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-90px) rotate(180deg); } 100% { transform: translateY(0) rotate(360deg); } }

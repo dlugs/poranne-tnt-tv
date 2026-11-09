@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Tizen Web Application manifest - Poranne TNT.
+  Morning countdown: a stick of TNT whose fuse burns down to the time the
+  kid has to leave for kindergarten. Leave in time -> fuse doused, star.
+  App id = <package>.<project>  ->  CldTntMrn1.PoranneTNT
+-->
+<widget xmlns="http://www.w3.org/ns/widgets"
+        xmlns:tizen="http://tizen.org/ns/widgets"
+        id="http://yourdomain/PoranneTNT"
+        version="1.0.0"
+        viewmodes="maximized">
+
+  <tizen:application id="CldTntMrn1.PoranneTNT"
+                     package="CldTntMrn1"
+                     required_version="3.0"/>
+
+  <name>Poranne TNT</name>
+  <description>Poranne odliczanie do wyjścia do przedszkola: lont się pali, trzeba zdążyć przed wybuchem.</description>
+  <author href="http://yourdomain">you</author>
+
+  <content src="index.html"/>
+  <icon src="icon.png"/>
+
+  <tizen:profile name="tv"/>
+
+  <!-- Morning weather from Open-Meteo. -->
+  <tizen:privilege name="http://tizen.org/privilege/internet"/>
+  <access origin="*" subdomains="true"/>
+  <!-- Colour / number keys on the remote. -->
+  <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+  <!-- Daily auto-start (tizen.alarm). -->
+  <tizen:privilege name="http://tizen.org/privilege/alarm"/>
+  <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+
+  <tizen:setting screen-orientation="landscape"
+                 context-menu="disable"
+                 background-support="disable"
+                 encryption="disable"
+                 install-location="auto"/>
+</widget>
